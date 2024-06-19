@@ -1,0 +1,5 @@
+Base de datos: http://localhost:8080/h2-ui/login.jsp?jsessionid=2f000cb82925de96366d3ef87736a7b1
+
+Doc1: http://localhost:8080/v3/api-docs/
+Doc2: http://localhost:8080/v3/api-docs.yaml/
+Doc3: http://localhost:8080/swagger-ui/index.html

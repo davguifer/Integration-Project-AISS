@@ -1,0 +1,509 @@
+openapi: 3.0.1
+info:
+  title: OpenAPI definition
+  version: v0
+servers:
+- url: http://localhost:8080/
+  description: Generated server url
+tags:
+- name: Project
+  description: Project management API
+paths:
+  /gitminer/projects/{id}:
+    get:
+      tags:
+      - Project
+      - projects
+      - get
+      summary: Retrieve a project by id
+      description: Get a project by specifying its id
+      operationId: findOne
+      parameters:
+      - name: id
+        in: path
+        description: id of project to be searched
+        required: true
+        schema:
+          type: string
+      responses:
+        "400":
+          description: Bad request
+        "404":
+          description: Project not found
+        "200":
+          description: Project found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+    put:
+      tags:
+      - Project
+      - projects
+      - put
+      summary: Update project
+      description: Modify an existing project
+      operationId: update
+      parameters:
+      - name: id
+        in: path
+        description: id of project to be updated
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Project'
+        required: true
+      responses:
+        "400":
+          description: Bad request
+        "204":
+          description: Project updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+        "404":
+          description: Project not found
+    delete:
+      tags:
+      - Project
+      - projects
+      - delete
+      summary: Delete project
+      description: Delete an existing project by specifying its id
+      operationId: delete
+      parameters:
+      - name: id
+        in: path
+        description: id of project to be deleted
+        required: true
+        schema:
+          type: string
+      responses:
+        "400":
+          description: Bad request
+        "204":
+          description: Project delete
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+        "404":
+          description: Project not found
+  /gitminer/projects:
+    get:
+      tags:
+      - Project
+      - projects
+      - get
+      summary: Retrieve a list of projects
+      description: Get a list of projects
+      operationId: findAll
+      parameters:
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: size
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 5
+      - name: name
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: order
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        "400":
+          description: Bad request
+        "404":
+          description: Projects not found
+        "200":
+          description: List of projects
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+    post:
+      tags:
+      - Project
+      - projects
+      - post
+      summary: Create new project
+      description: Create a new project
+      operationId: create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Project'
+        required: true
+      responses:
+        "400":
+          description: Bad request
+        "201":
+          description: Project created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+        "404":
+          description: Project not created
+  /gitminer/issues:
+    get:
+      tags:
+      - issues
+      - get
+      summary: Retrieve a list of issues
+      description: Get a list of issues
+      operationId: findAll_1
+      parameters:
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: size
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 10
+      - name: authorId
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: state
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: order
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: List of issues
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Issue'
+        "404":
+          description: Issues not found
+  /gitminer/issues/{id}:
+    get:
+      tags:
+      - issue
+      - get
+      summary: Retrieve an issue by id
+      description: Get a issue by specifying its id
+      operationId: findOne_1
+      parameters:
+      - name: id
+        in: path
+        description: id of issue to be searched
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Issue found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Issue'
+        "404":
+          description: Issue not found
+  /gitminer/issues/{id}/comments:
+    get:
+      tags:
+      - issue
+      - get
+      summary: Retrieve comments of an issue
+      description: Get a list of comments from an issue by specifying its id
+      operationId: getComments
+      parameters:
+      - name: id
+        in: path
+        description: id of issue to be searched
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Issue comments found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Issue'
+        "404":
+          description: Issue comments not found
+  /gitminer/commits:
+    get:
+      tags:
+      - commits
+      - get
+      summary: Retrieve a list of commits
+      description: Get a list of commits
+      operationId: findAll_2
+      parameters:
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: size
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 10
+      - name: author_email
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: order
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        "404":
+          description: Commits not found
+        "200":
+          description: List of commits
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Commit'
+  /gitminer/commits/{id}:
+    get:
+      tags:
+      - commit
+      - get
+      summary: Retrieve a commit by id
+      description: Get a commit by specifying its id
+      operationId: findOne_2
+      parameters:
+      - name: id
+        in: path
+        description: id of commit to be searched
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Commit found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Commit'
+        "404":
+          description: Commit not found
+  /gitminer/comments:
+    get:
+      tags:
+      - comments
+      - get
+      summary: Retrieve a list of comments
+      description: Get a list of comments
+      operationId: findAll_3
+      parameters:
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: size
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 10
+      - name: order
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: List of comments
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Comment'
+        "404":
+          description: Comments not found
+  /gitminer/comments/{id}:
+    get:
+      tags:
+      - comment
+      - get
+      summary: Retrieve a comment by id
+      description: Get a comment by specifying its id
+      operationId: findOne_3
+      parameters:
+      - name: id
+        in: path
+        description: id of comment to be searched
+        required: true
+        schema:
+          type: string
+      responses:
+        "404":
+          description: Comment not found
+        "200":
+          description: Comment found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Comment'
+components:
+  schemas:
+    Comment:
+      required:
+      - body
+      - created_at
+      type: object
+      properties:
+        id:
+          type: string
+        body:
+          type: string
+        author:
+          $ref: '#/components/schemas/User'
+        created_at:
+          type: string
+        updated_at:
+          type: string
+    Commit:
+      required:
+      - author_name
+      - authored_date
+      - committed_date
+      - committer_name
+      - web_url
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        message:
+          type: string
+        author_name:
+          type: string
+        author_email:
+          type: string
+        authored_date:
+          type: string
+        committer_name:
+          type: string
+        committer_email:
+          type: string
+        committed_date:
+          type: string
+        web_url:
+          type: string
+    Issue:
+      type: object
+      properties:
+        id:
+          type: string
+        ref_id:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        state:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+        closed_at:
+          type: string
+        labels:
+          type: array
+          items:
+            type: string
+        author:
+          $ref: '#/components/schemas/User'
+        assignee:
+          $ref: '#/components/schemas/User'
+        upvotes:
+          type: integer
+          format: int32
+        downvotes:
+          type: integer
+          format: int32
+        web_url:
+          type: string
+        comments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Comment'
+    Project:
+      required:
+      - name
+      - web_url
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        web_url:
+          type: string
+        commits:
+          type: array
+          items:
+            $ref: '#/components/schemas/Commit'
+        issues:
+          type: array
+          items:
+            $ref: '#/components/schemas/Issue'
+    User:
+      required:
+      - username
+      type: object
+      properties:
+        id:
+          type: string
+        username:
+          type: string
+        name:
+          type: string
+        avatar_url:
+          type: string
+        web_url:
+          type: string

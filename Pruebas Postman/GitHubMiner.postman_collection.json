@@ -1,0 +1,234 @@
+{
+	"info": {
+		"_postman_id": "feafa692-1826-4b06-b426-dc678a21445f",
+		"name": "GitHubMiner",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26141296"
+	},
+	"item": [
+		{
+			"name": "Get Users from GitHub",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "glpat-78ZEdYKBzFFXxYmvA6GV",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://gitlab.com/api/v4/users",
+					"protocol": "https",
+					"host": [
+						"gitlab",
+						"com"
+					],
+					"path": [
+						"api",
+						"v4",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Projects from GitHub",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "glpat-78ZEdYKBzFFXxYmvA6GV",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://gitlab.com/api/v4/projects",
+					"protocol": "https",
+					"host": [
+						"gitlab",
+						"com"
+					],
+					"path": [
+						"api",
+						"v4",
+						"projects"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Commits from GitHub",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "glpat-78ZEdYKBzFFXxYmvA6GV",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://gitlab.com/api/v4/projects/45728278/repository/commits",
+					"protocol": "https",
+					"host": [
+						"gitlab",
+						"com"
+					],
+					"path": [
+						"api",
+						"v4",
+						"projects",
+						"45728278",
+						"repository",
+						"commits"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Issues from GitHub",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "glpat-78ZEdYKBzFFXxYmvA6GV",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://gitlab.com/api/v4/projects/45728258/issues",
+					"protocol": "https",
+					"host": [
+						"gitlab",
+						"com"
+					],
+					"path": [
+						"api",
+						"v4",
+						"projects",
+						"45728258",
+						"issues"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Comments from GitHub",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://gitlab.com/api/v4/projects/45728278/issues/\"+iId.toString()+\"/notes",
+					"protocol": "https",
+					"host": [
+						"gitlab",
+						"com"
+					],
+					"path": [
+						"api",
+						"v4",
+						"projects",
+						"45728278",
+						"issues",
+						"\"+iId.toString()+\"",
+						"notes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Load project into GitMiner",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/gitlabminer/projects/45989256?sinceCommits=5&sinceIssues=30&maxPages=2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"gitlabminer",
+						"projects",
+						"45989256"
+					],
+					"query": [
+						{
+							"key": "sinceCommits",
+							"value": "5"
+						},
+						{
+							"key": "sinceIssues",
+							"value": "30"
+						},
+						{
+							"key": "maxPages",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "fetch Project",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/gitlabminer/projects/45989256?sinceCommits=5&sinceIssues=30&maxPages=2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"gitlabminer",
+						"projects",
+						"45989256"
+					],
+					"query": [
+						{
+							"key": "sinceCommits",
+							"value": "5"
+						},
+						{
+							"key": "sinceIssues",
+							"value": "30"
+						},
+						{
+							"key": "maxPages",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
